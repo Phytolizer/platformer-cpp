@@ -3,4 +3,5 @@ project(platformer)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(platformer main.cpp)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "src/*.cpp" "src/*.hpp")
+add_executable(platformer ${SOURCES})
