@@ -11,5 +11,5 @@ class Error : public std::runtime_error
 {
   public:
     explicit Error(std::string_view message);
-    [[nodiscard]] const char *what() const noexcept;
+    [[nodiscard]] const char *what() const noexcept override;
 };

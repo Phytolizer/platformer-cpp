@@ -12,17 +12,26 @@ class Player
     double m_xSpeed;
     double m_ySpeed;
     double m_xAcceleration;
-    double m_jumpHeight;
     bool m_grounded;
     bool m_facingRight;
+    constexpr static double MAX_SPEED = 10;
     constexpr static double JUMP_HEIGHT = 2;
     constexpr static double GRAVITY = 3;
+    constexpr static double WIDTH = 1;
+    constexpr static double HEIGHT = 2;
 
-    double ComputeXAcceleration(int sign);
+    [[nodiscard]] double ComputeXAcceleration(int sign) const;
 
   public:
-    Player();
+    Player(double spawnX, double spawnY);
 
     void Update(double deltaTime);
     void Show(SDL_Renderer *renderer);
+
+    [[nodiscard]] double X() const;
+    [[nodiscard]] double Y() const;
+    [[nodiscard]] double XSpeed() const;
+    [[nodiscard]] double YSpeed() const;
+    [[nodiscard]] double Width() const;
+    [[nodiscard]] double Height() const;
 };

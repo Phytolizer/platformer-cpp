@@ -5,12 +5,15 @@
 #pragma once
 
 #include "keyboard_state.hpp"
+#include "texture_registry.hpp"
 #include <SDL2/SDL.h>
-#include <map>
 
 extern KeyboardState KEY_STATE;
 extern int WINDOW_WIDTH;
 extern int WINDOW_HEIGHT;
+extern TextureRegistry TEXTURE_REGISTRY;
+
+constexpr double PIXEL_SCALE = 50;
 
 #define SDLERR(call)                                                                                                   \
     if ((call) != 0)                                                                                                   \
