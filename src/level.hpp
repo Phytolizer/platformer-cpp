@@ -5,6 +5,8 @@
 #include <memory>
 #include <vector>
 
+class Engine;
+
 /**
  * A level. Contains many owned LevelObject instances.
  */
@@ -15,6 +17,6 @@ class Level
   public:
     explicit Level(std::vector<std::shared_ptr<LevelObject>> &&objects);
 
-    void Update();
-    void Show(SDL_Renderer *renderer);
+    void Update(Engine *engine);
+    void Show(SDL_Renderer *renderer, Engine *engine);
 };

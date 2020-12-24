@@ -5,6 +5,8 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+
+class Engine;
 class Player
 {
     double m_x;
@@ -25,13 +27,13 @@ class Player
   public:
     Player(double spawnX, double spawnY);
 
-    void Update(double deltaTime);
-    void Show(SDL_Renderer *renderer);
+    void Update(double deltaTime, Engine *engine);
+    void Show(SDL_Renderer *renderer, Engine *engine) const;
 
     [[nodiscard]] double X() const;
     [[nodiscard]] double Y() const;
     [[nodiscard]] double XSpeed() const;
     [[nodiscard]] double YSpeed() const;
-    [[nodiscard]] double Width() const;
-    [[nodiscard]] double Height() const;
+    [[nodiscard]] static double Width();
+    [[nodiscard]] static double Height();
 };
