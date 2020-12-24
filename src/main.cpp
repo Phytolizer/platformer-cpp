@@ -23,7 +23,7 @@ int WINDOW_WIDTH = 800;
 int WINDOW_HEIGHT = 600;
 TextureRegistry TEXTURE_REGISTRY;
 
-int main()
+int main(int argc, char *argv[])
 {
     SDLERR(SDL_Init(SDL_INIT_VIDEO));
     SDLERR(IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG);
