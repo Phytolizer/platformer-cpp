@@ -1,7 +1,7 @@
 #include "timer.hpp"
 #include <chrono>
 
-Timer::Timer(double interval) : m_interval(interval)
+Timer::Timer(double interval) : m_interval(interval), m_lastTick(std::chrono::high_resolution_clock::now())
 {
 }
 

@@ -1,4 +1,5 @@
 #include "platform.hpp"
+#include "engine.hpp"
 #include "error.hpp"
 #include "main.hpp"
 #include "player.hpp"
@@ -7,37 +8,37 @@
 Platform::Platform(double x, double y, double w, double h) : LevelObject(x, y, w, h)
 {
 }
-void Platform::Update()
+void Platform::Update(Engine *engine)
 {
 }
-void Platform::Show(SDL_Renderer *renderer) const
+void Platform::Show(SDL_Renderer *renderer, Engine *engine)
 {
     // Pixel Sizes for art
     // left endcap, center, right endcap
     // Collider: 32x32 (1x1)
     // Visual: 40x40 (4 pixels each side for detail stuff)
 
-    SDL_Rect drawRect{static_cast<int>(WINDOW_WIDTH / 2 + (m_x - 0.1) * PIXEL_SCALE),
-                      static_cast<int>(WINDOW_HEIGHT / 2 + (m_y - 0.1) * PIXEL_SCALE),
-                      static_cast<int>((m_w + 0.2) * PIXEL_SCALE), static_cast<int>((m_h + 0.2) * PIXEL_SCALE + 8)};
-    auto *characterTexture = TEXTURE_REGISTRY.Get("grassTop");
+    SDL_Rect drawRect{static_cast<int>(engine->WindowWidth() / 2.0 + (X() - 0.1) * PIXEL_SCALE),
+                      static_cast<int>(engine->WindowHeight() / 2.0 + (Y() - 0.1) * PIXEL_SCALE),
+                      static_cast<int>((W() + 0.2) * PIXEL_SCALE), static_cast<int>((H() + 0.2) * PIXEL_SCALE + 8)};
+    auto *characterTexture = engine->TextureRegistry().Get("grassTop");
     SDLERR(SDL_RenderCopy(renderer, characterTexture, nullptr, &drawRect));
 }
-bool Platform::CollideTop(Player *player) const
+bool Platform::CollideTop(Player *player)
 {
     // if player above and moving downward
-    return player->X() + player->Width() > m_x && player->X() < m_x + m_w && player->Y() + player->Height() < m_y &&
-           player->YSpeed() > 0 && player->Y() + player->Height() + player->YSpeed() > m_y;
+    return player->X() + Player::Width() > X() && player->X() < X() + W() && player->Y() + Player::Height() < Y() &&
+           player->YSpeed() > 0 && player->Y() + Player::Height() + player->YSpeed() > Y();
 }
-bool Platform::CollideLeft(Player * /*player*/) const
+bool Platform::CollideLeft(Player * /*player*/)
 {
     return false;
 }
-bool Platform::CollideRight(Player * /*player*/) const
+bool Platform::CollideRight(Player * /*player*/)
 {
     return false;
 }
-bool Platform::CollideBottom(Player * /*player*/) const
+bool Platform::CollideBottom(Player * /*player*/)
 {
     return false;
 }
