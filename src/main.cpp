@@ -19,7 +19,7 @@
 #include <SDL_video.h>
 #include <fmt/format.h>
 
-int main()
+int main(int argc, char* argv[])
 {
     Engine engine("Platformer", 800, 600);
 
