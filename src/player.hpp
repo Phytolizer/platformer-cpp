@@ -18,7 +18,7 @@ class Player
     bool m_facingRight;
     constexpr static double MAX_SPEED = 10;
     constexpr static double JUMP_HEIGHT = 2;
-    constexpr static double GRAVITY = 3;
+    constexpr static double GRAVITY = 8;
     constexpr static double WIDTH = 1;
     constexpr static double HEIGHT = 2;
 

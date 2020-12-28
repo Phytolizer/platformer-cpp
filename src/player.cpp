@@ -17,7 +17,7 @@ Player::Player(double spawnX, double spawnY)
 
 double Player::ComputeXAcceleration(int sign) const
 {
-    return sign * (abs(sign * MAX_SPEED - m_xSpeed)) / 10;
+    return sign * (abs(sign * MAX_SPEED - m_xSpeed));
 }
 void Player::Update(double deltaTime, Engine *engine)
 {
@@ -26,10 +26,14 @@ void Player::Update(double deltaTime, Engine *engine)
         // move left
         m_xAcceleration = ComputeXAcceleration(-1);
     }
-    if (engine->KeyState().Held(SDLK_d))
+    else if (engine->KeyState().Held(SDLK_d))
     {
         // move right
         m_xAcceleration = ComputeXAcceleration(1);
+    }
+    else
+    {
+        m_xAcceleration = 0;
     }
     if (engine->KeyState().Held(SDLK_SPACE) && m_grounded)
     {

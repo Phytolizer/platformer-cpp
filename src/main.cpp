@@ -25,6 +25,10 @@ int main(int argc, char* argv[])
 
     auto timer = Timer(1.0 / 60);
 
+    LevelReader testReader("levels/first.lvl");
+    auto tokens = testReader.LexFile();
+    testReader.ParseFile(tokens);
+
     bool run = true;
     while (run)
     {

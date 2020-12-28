@@ -1,0 +1,6 @@
+Name: "Test Level"
+Size: 100 100
+Blocks:
+
+StandardPlatform 0 0
+StandardPlatform 99 99

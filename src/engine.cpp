@@ -9,11 +9,10 @@
 #include <cstdlib>
 #include <fmt/format.h>
 
-Engine::Engine(std::string_view title, int width, int height)
-    : m_active(true), m_windowWidth(width), m_windowHeight(height),
-      m_level({std::make_shared<Platform>(-1, 2, 1, 1), std::make_shared<Platform>(0, 2, 1, 1),
-               std::make_shared<Platform>(1, 2, 1, 1)}),
-      m_player(0, 0)
+Engine::Engine(const std::string_view title, const int width, const int height)
+    : m_active(true), m_level({std::make_shared<Platform>(-1, 2, 1, 1), std::make_shared<Platform>(0, 2, 1, 1),
+                               std::make_shared<Platform>(1, 2, 1, 1)}),
+      m_player(0, 0), m_windowWidth(width), m_windowHeight(height)
 {
     SDLERR(SDL_Init(SDL_INIT_VIDEO));
     SDLERR(IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG);
@@ -27,11 +26,11 @@ Engine::Engine(std::string_view title, int width, int height)
     LoadImage("assets/Grass_top.png", "grassTop");
     LoadImage("assets/character.png", "character");
 }
-void Engine::LoadImage(std::string_view path, std::string_view key)
+void Engine::LoadImage(const std::string_view path, const std::string_view key)
 {
-    auto *characterSurface = IMG_Load(path.data());
-    SDLNULL(characterSurface);
-    auto *character = SDL_CreateTextureFromSurface(m_renderer, characterSurface);
+    auto *character_surface = IMG_Load(path.data());
+    SDLNULL(character_surface);
+    auto *character = SDL_CreateTextureFromSurface(m_renderer, character_surface);
     SDLNULL(character);
     m_textureRegistry.Insert(key, character);
 }
@@ -47,9 +46,9 @@ Engine::~Engine()
     }
 }
 Engine::Engine(Engine &&other) noexcept
-    : m_window(other.m_window), m_renderer(other.m_renderer), m_active(other.m_active),
-      m_windowWidth(other.m_windowWidth), m_windowHeight(other.m_windowHeight), m_level(std::move(other.m_level)),
-      m_player(other.m_player)
+    : m_active(other.m_active), m_window(other.m_window), m_renderer(other.m_renderer),
+      m_level(std::move(other.m_level)), m_player(other.m_player), m_windowWidth(other.m_windowWidth),
+      m_windowHeight(other.m_windowHeight)
 {
     other.m_active = false;
 }
