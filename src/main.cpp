@@ -12,11 +12,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include <SDL2/SDL_image.h>
-#include <SDL_events.h>
-#include <SDL_hints.h>
-#include <SDL_keyboard.h>
-#include <SDL_render.h>
-#include <SDL_video.h>
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_hints.h>
+#include <SDL2/SDL_keyboard.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_video.h>
 #include <fmt/format.h>
 
 int main(int argc, char* argv[])
